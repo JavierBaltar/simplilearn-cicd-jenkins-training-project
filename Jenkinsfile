@@ -16,6 +16,20 @@ pipeline {
         }
         }
     
+        stage('Cleanup Workspace') {
+            steps {
+              node('slave-01') {
+              echo "-----------------------------------------------------------------------------------------------------------------"
+              echo "Starting Test on Slave 01"
+              echo "-----------------------------------------------------------------------------------------------------------------"
+              cleanWs()
+              sh """
+                echo "Cleaned Up Workspace for Application"
+                """
+              }
+        }
+        }
+    
         stage('Test slave-02') {
         steps{
             node('slave-02') {
