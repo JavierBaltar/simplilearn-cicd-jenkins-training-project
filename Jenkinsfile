@@ -42,7 +42,7 @@ pipeline {
       echo "Testing on Slave 02"
       echo "-----------------------------------------------------------------------------------------------------------------"
       
-      deleteDir()              
+                    
           
       sh "mvn test"
       junit '**/target/surefire-reports/*.xml'
