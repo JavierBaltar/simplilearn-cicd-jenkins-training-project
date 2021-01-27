@@ -10,6 +10,7 @@ pipeline {
                 echo "-----------------------------------------------------------------------------------------------------------------"
                 echo "Git Checkout on Slave 01"
                 echo "-----------------------------------------------------------------------------------------------------------------"
+                cleanWs()  
                 git credentialsId: 'github', url: 'https://github.com/JavierBaltar/simplilearn-cicd-jenkins-training-project'
                 
                 
@@ -65,6 +66,7 @@ pipeline {
     post {
                 always {
                     junit '**/target/surefire-reports/*.xml'
+                    cleanWs()
                 }
             }
     
