@@ -2,20 +2,7 @@ pipeline {
   agent none
   stages {
       
-    stage("Git Checkout"){
-        agent {
-      label 'slave-01'
-    }
-            steps{
-                echo "-----------------------------------------------------------------------------------------------------------------"
-                echo "Git Checkout on Slave 01"
-                echo "-----------------------------------------------------------------------------------------------------------------"
-                cleanWs()  
-                git credentialsId: 'github', url: 'https://github.com/JavierBaltar/simplilearn-cicd-jenkins-training-project'
-                
-                
-            }
-        }  
+     
   
   stage('Compile') {
     agent {
