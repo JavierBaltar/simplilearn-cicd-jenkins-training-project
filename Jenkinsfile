@@ -11,7 +11,7 @@ pipeline {
                 echo "Git Checkout on Slave 01"
                 echo "-----------------------------------------------------------------------------------------------------------------"
                 git credentialsId: 'github', url: 'https://github.com/JavierBaltar/simplilearn-cicd-jenkins-training-project'
-                stash includes: '**/', name: 'app'
+                
                 
             }
         }  
