@@ -43,7 +43,7 @@ pipeline {
       echo "-----------------------------------------------------------------------------------------------------------------"
       
       deleteDir()              
-      unstash 'app'    
+          
       sh "mvn test"
       junit '**/target/surefire-reports/*.xml'
       
