@@ -18,14 +18,14 @@ pipeline {
               label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
           }
           environment {
-              JUNIT_REPORTS_FOLDER = '**/target/surefire-reports/*.xml'
+              JUNIT_REPORTS_FOLDER = "**/target/surefire-reports/*.xml"
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
               echo "Maven Application Testing by Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn test' /* test the compiled source code using unit testing framework */
-              /* junit '${JUNIT_REPORTS_FOLDER}' */
+              junit "${JUNIT_REPORTS_FOLDER}"
           }
       }
       stage('Publish Testing Reports by Slave 02') {
