@@ -7,6 +7,11 @@ pipeline {
       skipDefaultCheckout true
   }
   stages {
+      stage('Checkout code') {
+          steps {
+            checkout scm
+          }
+      }
       stage('Maven Compile by Slave 01') {
           agent {
               label 'slave-01' /* this stage executor and workspace is allocated in slave-01 node */
