@@ -8,6 +8,9 @@ pipeline {
   }
   stages {
       stage('Checkout code') {
+          agent {
+              label 'slave-01' /* this stage executor and workspace is allocated in slave-01 node */
+          }  
           steps {
             checkout scm
           }
