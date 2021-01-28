@@ -17,7 +17,11 @@ pipeline {
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn compile' /* compile source code */
           }
-      }
+          post {
+              always {
+                  deleteDir() /* workspace clean up */
+              }
+          }
       stage('Maven Application Testing by Slave 02') {
           agent {
               label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
