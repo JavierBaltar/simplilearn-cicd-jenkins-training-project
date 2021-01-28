@@ -1,7 +1,7 @@
 pipeline {
   agent none
   environment {
-      JUNIT_REPORTS_FOLDER = "**/target/surefire-reports/*.xml"
+      JUNIT_REPORTS_FOLDER = "**/target/surefire-reports/*.xml" /* set junit reports folder variable */
   }
   stages {
       stage('Maven Compile by Slave 01') {
