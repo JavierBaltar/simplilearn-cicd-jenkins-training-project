@@ -7,13 +7,13 @@ pipeline {
       skipDefaultCheckout true
   }
   stages {
-      stage('Checkout code') {
+      stage('Checkout Code by Slave 01') {
           agent {
               label 'slave-01' /* this stage executor and workspace is allocated in slave-01 node */
           }  
           steps {
-            checkout scm
-            stash includes: '**', name: 'app'
+            checkout scm /* checkout source repository */
+            stash includes: '**', name: 'repository_code' /* stores code to be handed over to slave-02 */
           }
       }
       stage('Maven Compile by Slave 01') {
@@ -40,7 +40,7 @@ pipeline {
               echo "-----------------------------------------------------------------------------------------------------------------"
               echo "Maven Application Testing by Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
-              unstash 'app'  
+              unstash 'repository_code' /* retrieves code stored by slave-01 */
               sh 'mvn test' /* test the compiled source code using unit testing framework */
           }
       }
