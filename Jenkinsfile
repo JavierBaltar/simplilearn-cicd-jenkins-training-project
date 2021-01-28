@@ -9,7 +9,7 @@ pipeline {
               echo "-----------------------------------------------------------------------------------------------------------------"
               echo "Compile on Slave 01"
               echo "-----------------------------------------------------------------------------------------------------------------"
-              sh 'mvn compile'
+              sh 'mvn compile' /* compile source code */
           }
       }
       stage('Test') {
@@ -20,7 +20,7 @@ pipeline {
               echo "-----------------------------------------------------------------------------------------------------------------"
               echo "Testing on Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
-              sh 'mvn test'
+              sh 'mvn test' /* test the compiled source code using unit testing framework */
               junit '**/target/surefire-reports/*.xml'
           }
       }
@@ -35,8 +35,8 @@ pipeline {
           }
           post {
               always {
-                  junit '**/target/surefire-reports/*.xml'
-                  cleanWs()
+                  junit '**/target/surefire-reports/*.xml' /* publish unit testing reports */
+                  deleteDir() /* workspace clean up */
               }
           }
       }
