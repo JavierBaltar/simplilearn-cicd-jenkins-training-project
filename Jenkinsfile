@@ -4,10 +4,10 @@ pipeline {
       JUNIT_REPORTS_FOLDER = "**/target/surefire-reports/*.xml" /* set junit reports folder variable */
   }
   options {
-      skipDefaultCheckout true
+      skipDefaultCheckout true /* skips the default repository checkout for testing the 'stash/unstash' feature behaviour */
   }
   stages {
-      stage('Checkout Code by Slave 01') {
+      stage('Checkout code by slave-01') {
           agent {
               label 'slave-01' /* this stage executor and workspace is allocated in slave-01 node */
           }  
@@ -16,7 +16,7 @@ pipeline {
             stash includes: '**', name: 'repository_code' /* stores code to be handed over to slave-02 */
           }
       }
-      stage('Maven Compile by Slave 01') {
+      stage('Maven compile by slave-01') {
           agent {
               label 'slave-01' /* this stage executor and workspace is allocated in slave-01 node */
           }
@@ -32,7 +32,7 @@ pipeline {
               }
           }
       }  
-      stage('Maven Application Testing by Slave 02') {
+      stage('Maven testing by slave-02') {
           agent {
               label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
           }
@@ -44,7 +44,7 @@ pipeline {
               sh 'mvn test' /* test the compiled source code using unit testing framework */
           }
       }
-      stage('Publish Testing Reports by Slave 02') {
+      stage('Publish testing reports by slave-02') {
           agent {
               label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
           }
