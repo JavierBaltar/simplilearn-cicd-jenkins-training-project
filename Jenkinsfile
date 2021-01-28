@@ -2,18 +2,18 @@ pipeline {
   agent none
   
   stages {
-      stage('Compile') {
+      stage('Maven Compile by Slave 01') {
           agent {
               label 'slave-01' /* this stage executor and workspace is allocated in slave-01 node */
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
-              echo "Maven Compile by Slave 01 "
+              echo "Maven Compile by Slave 01"
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn compile' /* compile source code */
           }
       }
-      stage('Test') {
+      stage('Maven Application Testing by Slave 02') {
           agent {
               label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
           }
@@ -34,7 +34,7 @@ pipeline {
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
-              echo "Reports on Slave 02"
+              echo "Publish Testing Reports by Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
           }
           post {
