@@ -24,7 +24,6 @@ pipeline {
               echo "Maven Application Testing by Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn test' /* test the compiled source code using unit testing framework */
-              junit "${JUNIT_REPORTS_FOLDER}"
           }
       }
       stage('Publish Testing Reports by Slave 02') {
@@ -38,7 +37,7 @@ pipeline {
           }
           post {
               always {
-                  junit '**/target/surefire-reports/*.xml' /* publish unit testing reports */
+                  junit "${JUNIT_REPORTS_FOLDER}" /* publish unit testing reports */
                   deleteDir() /* workspace clean up */
               }
           }
