@@ -25,7 +25,7 @@ pipeline {
               echo "Testing on Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn test' /* test the compiled source code using unit testing framework */
-              junit '${JUNIT_REPORTS_FOLDER}'
+              /* junit '${JUNIT_REPORTS_FOLDER}' */
           }
       }
       stage('Reports') {
