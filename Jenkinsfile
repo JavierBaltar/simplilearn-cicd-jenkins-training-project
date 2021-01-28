@@ -3,7 +3,7 @@ pipeline {
   stages {
       stage('Compile') {
           agent {
-              label 'slave-01'
+              label 'slave-01' /* this stage executor and workspace is allocated in slave-01 node */
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
@@ -14,7 +14,7 @@ pipeline {
       }
       stage('Test') {
           agent {
-              label 'slave-02'
+              label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
@@ -26,7 +26,7 @@ pipeline {
       }
       stage('Reports') {
           agent {
-              label 'slave-02'
+              label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
