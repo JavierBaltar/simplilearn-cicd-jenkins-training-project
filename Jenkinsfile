@@ -13,6 +13,7 @@ pipeline {
           }  
           steps {
             checkout scm
+            stash includes: '**', name: 'app'
           }
       }
       stage('Maven Compile by Slave 01') {
@@ -39,6 +40,7 @@ pipeline {
               echo "-----------------------------------------------------------------------------------------------------------------"
               echo "Maven Application Testing by Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
+              unstash 'app'  
               sh 'mvn test' /* test the compiled source code using unit testing framework */
           }
       }
