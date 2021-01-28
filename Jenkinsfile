@@ -1,5 +1,8 @@
 pipeline {
   agent none
+  environment {
+        JUNIT_REPORTS_FOLDER = '**/target/surefire-reports/*.xml'
+  }
   stages {
       stage('Compile') {
           agent {
@@ -21,7 +24,7 @@ pipeline {
               echo "Testing on Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn test' /* test the compiled source code using unit testing framework */
-              junit '**/target/surefire-reports/*.xml'
+              junit $JUNIT_REPORTS_FOLDER
           }
       }
       stage('Reports') {
