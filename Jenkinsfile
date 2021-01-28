@@ -1,8 +1,6 @@
 pipeline {
   agent none
-  environment {
-        JUNIT_REPORTS_FOLDER = '**/target/surefire-reports/*.xml'
-  }
+  
   stages {
       stage('Compile') {
           agent {
@@ -18,6 +16,9 @@ pipeline {
       stage('Test') {
           agent {
               label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
+          }
+          environment {
+              JUNIT_REPORTS_FOLDER = '**/target/surefire-reports/*.xml'
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
