@@ -8,7 +8,7 @@ pipeline {
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
-              echo "Compile on Slave 01 "
+              echo "Maven Compile by Slave 01 "
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn compile' /* compile source code */
           }
@@ -22,13 +22,13 @@ pipeline {
           }
           steps {
               echo "-----------------------------------------------------------------------------------------------------------------"
-              echo "Testing on Slave 02"
+              echo "Maven Application Testing by Slave 02"
               echo "-----------------------------------------------------------------------------------------------------------------"
               sh 'mvn test' /* test the compiled source code using unit testing framework */
               /* junit '${JUNIT_REPORTS_FOLDER}' */
           }
       }
-      stage('Reports') {
+      stage('Publish Testing Reports by Slave 02') {
           agent {
               label 'slave-02' /* this stage executor and workspace is allocated in slave-02 node */
           }
